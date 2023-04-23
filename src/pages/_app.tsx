@@ -1,11 +1,12 @@
 import type { AppType } from "next/app";
 
-import { api } from "~/utils/api";
+import '~/styles/globals.css';
 
-import "~/styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "react-hot-toast";
-import Head from "next/head";
+import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
+import { api } from '~/utils/api';
+
+import { ClerkProvider } from '@clerk/nextjs';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -13,7 +14,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Head>
         <title>Bark</title>
         <meta name="description" content="Bark" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪵</text></svg>"
+        />
       </Head>
       <Toaster position="bottom-center" />
       <Component {...pageProps} />
