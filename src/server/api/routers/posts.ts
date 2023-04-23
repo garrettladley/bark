@@ -14,7 +14,7 @@ const addUserDataToPosts = async (posts: Post[]) => {
   const users = (
     await clerkClient.users.getUserList({
       userId: userId,
-      limit: 110,
+      limit: 100,
     })
   ).map(filterUserForClient);
 
@@ -28,16 +28,7 @@ const addUserDataToPosts = async (posts: Post[]) => {
         message: `Author for post not found. POST ID: ${post.id}, USER ID: ${post.authorId}`,
       });
     }
-    if (!author.username) {
-      // user the ExternalUsername
-      if (!author.externalUsername) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: `Author has no GitHub Account: ${author.id}`,
-        });
-      }
-      author.username = author.externalUsername;
-    }
+
     return {
       post,
       author: {
@@ -97,7 +88,7 @@ export const postsRouter = createTRPCRouter({
   create: privateProcedure
     .input(
       z.object({
-        content: z.string().emoji("Only emojis are allowed").min(1).max(280),
+        content: z.string().min(1).max(280),
       })
     )
     .mutation(async ({ ctx, input }) => {
