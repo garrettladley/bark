@@ -1,3 +1,3 @@
 # Twitter clone built using the T-3 stack
 
-## Extended the App created in @t3dotgg's Chirp tutorial
+## App created using [@t3dotgg](https://github.com/t3dotgg)'s Chirp tutorial
